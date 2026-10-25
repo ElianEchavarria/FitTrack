@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple dumbbell launcher icon -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#1B6B4F"
+        android:pathData="M54,0A54,54 0,1 1,54 108A54,54 0,1 1,54 0Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M26,40h8v28h-8z M36,34h8v40h-8z M64,34h8v40h-8z M74,40h8v28h-8z M44,50h20v8h-20z" />
+</vector>
