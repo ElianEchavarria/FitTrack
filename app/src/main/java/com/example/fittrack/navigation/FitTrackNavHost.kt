@@ -1,11 +1,6 @@
 package com.example.fittrack.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -14,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.fittrack.ui.WorkoutViewModel
 import com.example.fittrack.ui.screens.DashboardScreen
+import com.example.fittrack.ui.screens.ExerciseDetailScreen
 import com.example.fittrack.ui.screens.ExerciseListScreen
 
 /**
@@ -63,13 +59,14 @@ fun FitTrackNavHost(
             arguments = listOf(navArgument(FitTrackRoutes.EXERCISE_ID_ARG) { type = NavType.IntType })
         ) { backStackEntry ->
             val exerciseId = backStackEntry.arguments?.getInt(FitTrackRoutes.EXERCISE_ID_ARG) ?: -1
-            // Temporary destination until the exercise detail screen is built
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(
-                    text = viewModel.getExercise(exerciseId)?.name.orEmpty(),
-                    style = MaterialTheme.typography.headlineMedium
-                )
-            }
+            ExerciseDetailScreen(
+                exercise = viewModel.getExercise(exerciseId),
+                uiState = viewModel.uiState,
+                onDurationChange = viewModel::onDurationInputChange,
+                onLogWorkout = viewModel::logWorkout,
+                onDismissConfirmation = viewModel::dismissLogConfirmation,
+                onBackClick = { navController.popBackStack() }
+            )
         }
     }
 }
